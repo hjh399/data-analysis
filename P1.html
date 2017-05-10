@@ -11800,12 +11800,35 @@ div#notebook {
 <p>Q2.此任务的适当假设集是什么？你想执行什么类型的统计测试？为你的选择提供正当理由。</p>
 <p>答：</p>
 <p>A1.</p>
-<p>$μ_1$是一致文字条件的结果</p>
-<p>$μ_2$是不一致文字条件的结果</p>
-<p>$H_0$=$μ_1-μ_2$=0</p>
-<p>$H_A$=$μ_1-μ_2$&lt;0</p>
+<p>$μ_1$是一致文字条件的所用时间的样本均值</p>
+<p>$μ_2$是不一致文字条件的的所用时间的样本均值</p>
+<p>$H_0$：$μ_1-μ_2$=0 ，即文字条件不一致与文字条件一致的样本属于同一个总体</p>
+<p>$H_A$：$μ_1-μ_2$&lt;0 ，即文字条件不一致与文字条件一致的样本不同</p>
+<hr>
 <p>A2.</p>
-<p>因为两个都是样本，且样本较小（n&lt;30），另外自己测试时感觉一致文字条件下用时更少，所以考虑执行单尾的t检验。</p>
+<p>因为两个都是样本，且样本较小（n&lt;30），所以选择T检验</p>
+<p>两个在同一时间的不相关的样本，所以应该是独立样本而不是相依样本。（请问为什么要判断这个，这是审核老师说需要我补充的）</p>
+<p>另外下面是t 检验的前提要求(Assumptions for the t-test)，来自审核老师的链接，大致满足</p>
+<blockquote><p><a href="http://www.csic.cornell.edu/Elrod/t-test/t-test-assumptions.html">http://www.csic.cornell.edu/Elrod/t-test/t-test-assumptions.html</a></p>
+</blockquote>
+<ul>
+<li><p>Bivariate independent variable (A, B groups)两个自变量有区别 ✔️</p>
+</li>
+<li><p>Continuous dependent variable因变量是连续的？（不是特别明白意思）×</p>
+</li>
+<li><p>Each observation of the dependent variable is independent of the other observations of the dependent variable 每个测试者花费的时间不会被其他测试者的时间影响 ✔️</p>
+<ul>
+<li>(its probability distribution isn't affected by their values). </li>
+<li>Exception: For the paired t-test, we only require that the pair-differences (Ai - Bi) be independent from each other (across i). </li>
+<li>[Note: "independent" and "dependent" are used in two different senses here. Just think of a "dependent variable" as one thing, and "observations that are dependent" as another thing.]</li>
+</ul>
+</li>
+<li>Dependent variable has a normal distribution, with the same variance, σ2, in each group 正态分布，方差相同|未知，预计都是正太分布，方差稍有不同 ✔️<ul>
+<li>(as though the distribution for group A were merely shifted over to become the distribution for group B, without changing shape)</li>
+</ul>
+</li>
+</ul>
+<p>另外自己测试时感觉一致文字条件下用时更少，所以考虑执行单尾的t检验。</p>
 
 </div>
 </div>
@@ -12099,25 +12122,22 @@ div#notebook {
 <td>sum</td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>15.6637754</td>
+<td>44.60435902</td>
+<td>sd</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p>从google表格计算可以得出，文字条件一致条件的花费时间均值为14.05，不一致的均值为22.02；</p>
+<p>另外，前者的标准差为15.66，后者的标准差为44.60，IQR的制图地址是<a href="https://plot.ly/~hjh399/22/">https://plot.ly/~hjh399/22/</a></p>
 <p>均值误差为1.22；</p>
-<p>而t-statistic值为-6.53，又α=0.05，df为24+24-2=46，且为单尾检验，故t-critical值为-1.676；</p>
-<p>所以，t-statistic值 &lt; t-critical值,即reject 零假设。</p>
-<p>另计算效应值Cohen's d=-0.39，介于Small到Medium之间；</p>
-<blockquote><p>cohen's d (from wikipedia)</p>
-<ul>
-<li>0.01 Very small</li>
-<li>0.2 Small</li>
-<li>0.5 Medium</li>
-<li>0.8 Large</li>
-<li>1.2 Very large</li>
-<li>2.0 Huge</li>
-</ul>
-</blockquote>
-<p>而$r^2$=0.69，所以大概有69%的部分是受自变量影响的。</p>
 
 </div>
 </div>
@@ -12138,136 +12158,12 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>图片请见这个链接<a href="https://plot.ly/~hjh399/20/">https://plot.ly/~hjh399/20/</a></p>
 <p>可以看到两份样本都基本呈正态分布，而不一致条件下的样本整体花费时间更高。</p>
 <p>另外，不一致文字条件的极端值更多，标准差也应该更大。</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#无法成功制图。。。</span>
-
-<span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="kn">as</span> <span class="nn">py</span>
-<span class="kn">from</span> <span class="nn">plotly.graph_objs</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">py</span><span class="o">.</span><span class="n">sign_in</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;api_key&#39;</span><span class="p">)</span>
-<span class="n">trace1</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;12.079&quot;</span><span class="p">,</span> <span class="s2">&quot;16.791&quot;</span><span class="p">,</span> <span class="s2">&quot;9.564&quot;</span><span class="p">,</span> <span class="s2">&quot;8.630&quot;</span><span class="p">,</span> <span class="s2">&quot;14.669&quot;</span><span class="p">,</span> <span class="s2">&quot;12.238&quot;</span><span class="p">,</span> <span class="s2">&quot;14.692&quot;</span><span class="p">,</span> <span class="s2">&quot;8.987&quot;</span><span class="p">,</span> <span class="s2">&quot;9.401&quot;</span><span class="p">,</span> <span class="s2">&quot;14.480&quot;</span><span class="p">,</span> <span class="s2">&quot;22.328&quot;</span><span class="p">,</span> <span class="s2">&quot;15.298&quot;</span><span class="p">,</span> <span class="s2">&quot;15.073&quot;</span><span class="p">,</span> <span class="s2">&quot;16.929&quot;</span><span class="p">,</span> <span class="s2">&quot;18.200&quot;</span><span class="p">,</span> <span class="s2">&quot;12.130&quot;</span><span class="p">,</span> <span class="s2">&quot;18.495&quot;</span><span class="p">,</span> <span class="s2">&quot;10.639&quot;</span><span class="p">,</span> <span class="s2">&quot;11.344&quot;</span><span class="p">,</span> <span class="s2">&quot;12.369&quot;</span><span class="p">,</span> <span class="s2">&quot;12.944&quot;</span><span class="p">,</span> <span class="s2">&quot;14.233&quot;</span><span class="p">,</span> <span class="s2">&quot;19.710&quot;</span><span class="p">,</span> <span class="s2">&quot;16.004&quot;</span><span class="p">],</span> 
-  <span class="s2">&quot;autobinx&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> 
-  <span class="s2">&quot;autobiny&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
-  <span class="s2">&quot;marker&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;rgb(140, 86, 75)&quot;</span><span class="p">},</span> 
-  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Congruent&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;nbinsx&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
-  <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> 
-  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;histogram&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="s2">&quot;82f3ee&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;xbins&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> 
-    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
-    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">8</span>
-  <span class="p">},</span> 
-  <span class="s2">&quot;xsrc&quot;</span><span class="p">:</span> <span class="s2">&quot;hjh399:13:d38b1a&quot;</span>
-<span class="p">}</span>
-<span class="n">trace2</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;19.278&quot;</span><span class="p">,</span> <span class="s2">&quot;18.741&quot;</span><span class="p">,</span> <span class="s2">&quot;21.214&quot;</span><span class="p">,</span> <span class="s2">&quot;15.687&quot;</span><span class="p">,</span> <span class="s2">&quot;22.803&quot;</span><span class="p">,</span> <span class="s2">&quot;20.878&quot;</span><span class="p">,</span> <span class="s2">&quot;24.572&quot;</span><span class="p">,</span> <span class="s2">&quot;17.394&quot;</span><span class="p">,</span> <span class="s2">&quot;20.762&quot;</span><span class="p">,</span> <span class="s2">&quot;26.282&quot;</span><span class="p">,</span> <span class="s2">&quot;24.524&quot;</span><span class="p">,</span> <span class="s2">&quot;18.644&quot;</span><span class="p">,</span> <span class="s2">&quot;17.510&quot;</span><span class="p">,</span> <span class="s2">&quot;20.330&quot;</span><span class="p">,</span> <span class="s2">&quot;35.255&quot;</span><span class="p">,</span> <span class="s2">&quot;22.158&quot;</span><span class="p">,</span> <span class="s2">&quot;25.139&quot;</span><span class="p">,</span> <span class="s2">&quot;20.429&quot;</span><span class="p">,</span> <span class="s2">&quot;17.425&quot;</span><span class="p">,</span> <span class="s2">&quot;34.288&quot;</span><span class="p">,</span> <span class="s2">&quot;23.894&quot;</span><span class="p">,</span> <span class="s2">&quot;17.960&quot;</span><span class="p">,</span> <span class="s2">&quot;22.058&quot;</span><span class="p">,</span> <span class="s2">&quot;21.157&quot;</span><span class="p">],</span> 
-  <span class="s2">&quot;autobinx&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> 
-  <span class="s2">&quot;autobiny&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
-  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Incongruent&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> 
-  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;histogram&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="s2">&quot;245d01&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;xbins&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> 
-    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
-    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">15</span>
-  <span class="p">},</span> 
-  <span class="s2">&quot;xsrc&quot;</span><span class="p">:</span> <span class="s2">&quot;hjh399:13:679bf8&quot;</span>
-<span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">([</span><span class="n">trace1</span><span class="p">,</span> <span class="n">trace2</span><span class="p">])</span>
-<span class="n">layout</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;autosize&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> 
-  <span class="s2">&quot;bargroupgap&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
-  <span class="s2">&quot;barmode&quot;</span><span class="p">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;dragmode&quot;</span><span class="p">:</span> <span class="s2">&quot;zoom&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;hovermode&quot;</span><span class="p">:</span> <span class="s2">&quot;closest&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;showlegend&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
-  <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;实际花费时间&quot;</span><span class="p">,</span> 
-  <span class="s2">&quot;xaxis&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;autorange&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> 
-    <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">26.3728632479</span><span class="p">],</span> 
-    <span class="s2">&quot;rangeslider&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;bgcolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> 
-      <span class="s2">&quot;bordercolor&quot;</span><span class="p">:</span> <span class="s2">&quot;#444&quot;</span><span class="p">,</span> 
-      <span class="s2">&quot;borderwidth&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
-      <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">37</span><span class="p">],</span> 
-      <span class="s2">&quot;thickness&quot;</span><span class="p">:</span> <span class="mf">0.15</span>
-    <span class="p">},</span> 
-    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;时间&quot;</span><span class="p">,</span> 
-    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;linear&quot;</span>
-  <span class="p">},</span> 
-  <span class="s2">&quot;yaxis&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;autorange&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
-    <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.31578947368</span><span class="p">],</span> 
-    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;人数&quot;</span><span class="p">,</span> 
-    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
-<span class="n">plot_url</span> <span class="o">=</span> <span class="n">py</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">PlotlyError</span>                               Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-17-c3e5cb2ccd28&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> plotly<span class="ansi-blue-fg">.</span>graph_objs <span class="ansi-green-fg">import</span> <span class="ansi-blue-fg">*</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> 
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>py<span class="ansi-blue-fg">.</span>sign_in<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;username&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;api_key&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      7</span> trace1 = {
-<span class="ansi-green-intense-fg ansi-bold">      8</span>   <span class="ansi-blue-fg">&#34;x&#34;</span><span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;12.079&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;16.791&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;9.564&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;8.630&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;14.669&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;12.238&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;14.692&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;8.987&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;9.401&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;14.480&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;22.328&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;15.298&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;15.073&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;16.929&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;18.200&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;12.130&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;18.495&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;10.639&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;11.344&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;12.369&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;12.944&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;14.233&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;19.710&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;16.004&#34;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">/Users/kousan/anaconda/lib/python2.7/site-packages/plotly/plotly/plotly.pyc</span> in <span class="ansi-cyan-fg">sign_in</span><span class="ansi-blue-fg">(username, api_key, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     59</span>         v2<span class="ansi-blue-fg">.</span>users<span class="ansi-blue-fg">.</span>current<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     60</span>     <span class="ansi-green-fg">except</span> exceptions<span class="ansi-blue-fg">.</span>PlotlyRequestError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 61</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> exceptions<span class="ansi-blue-fg">.</span>PlotlyError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Sign in failed.&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     62</span> 
-<span class="ansi-green-intense-fg ansi-bold">     63</span> update_plot_options <span class="ansi-blue-fg">=</span> session<span class="ansi-blue-fg">.</span>update_session_plot_options
-
-<span class="ansi-red-fg">PlotlyError</span>: Sign in failed.</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span> 
-<span class="n">plotly</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">set_credentials_file</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;hjh399&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;NIViGGBctlMZcHMPJzKh&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12285,7 +12181,6 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(与Q3答案一样，我以为Q3应该就要答这些了。。。）</p>
 <table>
 <thead><tr>
 <th>Congruent</th>
@@ -12557,12 +12452,20 @@ div#notebook {
 <td>sum</td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>15.6637754</td>
+<td>44.60435902</td>
+<td>sd</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>从google表格计算可以得出，文字条件一致条件的花费时间均值为14.05，不一致的均值为22.02；</p>
-<p>均值误差为1.22；</p>
-<p>而t-statistic值为-6.53，又α=0.05，df为24+24-2=46，且为单尾检验，故t-critical值为-1.676；</p>
+<p>从google表格计算可以得出，而t-statistic值为-6.53，又α=0.05，df为24+24-2=46，且为单尾检验，故t-critical值为-1.676；</p>
 <p>所以，t-statistic值 &lt; t-critical值,即reject 零假设。</p>
 <p>另计算效应值Cohen's d=-0.39，介于Small到Medium之间；</p>
 <blockquote><p>cohen's d (from wikipedia)</p>
@@ -12576,7 +12479,11 @@ div#notebook {
 </ul>
 </blockquote>
 <p>而$r^2$=0.69，所以大概有69%的部分是受自变量影响的。</p>
-<p><strong>以上是Q3的答案，结论是拒绝零假设，文字条件不一致与文字条件一致的样本的确不同。结果与我期望一致。</strong></p>
+<p>结论是拒绝零假设，文字条件不一致与文字条件一致的样本的确不同。结果与我期望一致。**</p>
+<p>审核老师说：</p>
+<blockquote><p>但使用的是独立样本 t 检验的计算公式，并不符合 相依样本 的实际情况。</p>
+</blockquote>
+<p>但是我以为这两个样本是独立样本，所以老师想说的是什么意思？~~~</p>
 
 </div>
 </div>
