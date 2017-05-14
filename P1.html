@@ -11800,10 +11800,10 @@ div#notebook {
 <p>Q2.此任务的适当假设集是什么？你想执行什么类型的统计测试？为你的选择提供正当理由。</p>
 <p>答：</p>
 <p>A1.</p>
-<p>$μ_1$是一致文字条件的所用时间的一个样本</p>
-<p>$μ_2$是不一致文字条件的的所用时间的一个样本</p>
-<p>$H_0$：$μ_1-μ_2$=0 ，即文字条件不一致与文字条件一致的样本属于同一个总体</p>
-<p>$H_A$：$μ_1-μ_2$&lt;0 ，即文字条件不一致与文字条件一致的样本不同</p>
+<p>$μ_1$是一致文字条件的所用时间的样本集合</p>
+<p>$μ_2$是不一致文字条件的的所用时间的样本集合</p>
+<p>$H_0$：$μ_1-μ_2$=0 ，即文字条件一致与文字条件不一致的样本属于同一个总体</p>
+<p>$H_A$：$μ_1-μ_2$&lt;0 ，即文字条件一致花费时间比文字条件不一致的时间少</p>
 <hr>
 <p>A2.</p>
 <p>因为两个都是样本，没有总体的数据，且样本较小（n&lt;30），所以选择T检验</p>
@@ -12096,6 +12096,108 @@ div#notebook {
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Get this figure: fig = py.get_figure(&quot;https://plot.ly/~hjh399/18/&quot;)</span>
+<span class="c1"># Get this figure&#39;s data: data = py.get_figure(&quot;https://plot.ly/~hjh399/18/&quot;).get_data()</span>
+<span class="c1"># Add data to this figure: py.plot(Data([Scatter(x=[1, 2], y=[2, 3])]), filename =&quot;plot from API (4)&quot;, fileopt=&quot;extend&quot;)</span>
+<span class="c1"># Get x data of first trace: x1 = py.get_figure(&quot;https://plot.ly/~hjh399/18/&quot;).get_data()[0][&quot;x&quot;]</span>
+
+<span class="c1"># Get figure documentation: https://plot.ly/python/get-requests/</span>
+<span class="c1"># Add data documentation: https://plot.ly/python/file-options/</span>
+
+<span class="c1"># If you&#39;re using unicode in your file, you may need to specify the encoding.</span>
+<span class="c1"># You can reproduce this figure in Python with the following code!</span>
+
+<span class="c1"># Learn about API authentication here: https://plot.ly/python/getting-started</span>
+<span class="c1"># Find your api_key here: https://plot.ly/settings/api</span>
+
+<span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="kn">as</span> <span class="nn">py</span>
+<span class="kn">from</span> <span class="nn">plotly.graph_objs</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">py</span><span class="o">.</span><span class="n">sign_in</span><span class="p">(</span><span class="s1">&#39;hjh399&#39;</span><span class="p">,</span> <span class="s1">&#39;SRLOf4DMJ3SJTqfczaEs&#39;</span><span class="p">)</span>
+
+<span class="c1">#制作congruent图表</span>
+<span class="n">congruent</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;12.079&quot;</span><span class="p">,</span> <span class="s2">&quot;16.791&quot;</span><span class="p">,</span> <span class="s2">&quot;9.564&quot;</span><span class="p">,</span> <span class="s2">&quot;8.630&quot;</span><span class="p">,</span> <span class="s2">&quot;14.669&quot;</span><span class="p">,</span> <span class="s2">&quot;12.238&quot;</span><span class="p">,</span> <span class="s2">&quot;14.692&quot;</span><span class="p">,</span> <span class="s2">&quot;8.987&quot;</span><span class="p">,</span> <span class="s2">&quot;9.401&quot;</span><span class="p">,</span> <span class="s2">&quot;14.480&quot;</span><span class="p">,</span> <span class="s2">&quot;22.328&quot;</span><span class="p">,</span> <span class="s2">&quot;15.298&quot;</span><span class="p">,</span> <span class="s2">&quot;15.073&quot;</span><span class="p">,</span> <span class="s2">&quot;16.929&quot;</span><span class="p">,</span> <span class="s2">&quot;18.200&quot;</span><span class="p">,</span> <span class="s2">&quot;12.130&quot;</span><span class="p">,</span> <span class="s2">&quot;18.495&quot;</span><span class="p">,</span> <span class="s2">&quot;10.639&quot;</span><span class="p">,</span> <span class="s2">&quot;11.344&quot;</span><span class="p">,</span> <span class="s2">&quot;12.369&quot;</span><span class="p">,</span> <span class="s2">&quot;12.944&quot;</span><span class="p">,</span> <span class="s2">&quot;14.233&quot;</span><span class="p">,</span> <span class="s2">&quot;19.710&quot;</span><span class="p">,</span> <span class="s2">&quot;16.004&quot;</span><span class="p">],</span> 
+  <span class="s2">&quot;autobinx&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> 
+  <span class="s2">&quot;autobiny&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Congruent&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> 
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;histogram&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="s2">&quot;cbdbf3&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;xbins&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> 
+    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">8</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">#制作incongruent图表</span>
+<span class="n">incongruent</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;19.278&quot;</span><span class="p">,</span> <span class="s2">&quot;18.741&quot;</span><span class="p">,</span> <span class="s2">&quot;21.214&quot;</span><span class="p">,</span> <span class="s2">&quot;15.687&quot;</span><span class="p">,</span> <span class="s2">&quot;22.803&quot;</span><span class="p">,</span> <span class="s2">&quot;20.878&quot;</span><span class="p">,</span> <span class="s2">&quot;24.572&quot;</span><span class="p">,</span> <span class="s2">&quot;17.394&quot;</span><span class="p">,</span> <span class="s2">&quot;20.762&quot;</span><span class="p">,</span> <span class="s2">&quot;26.282&quot;</span><span class="p">,</span> <span class="s2">&quot;24.524&quot;</span><span class="p">,</span> <span class="s2">&quot;18.644&quot;</span><span class="p">,</span> <span class="s2">&quot;17.510&quot;</span><span class="p">,</span> <span class="s2">&quot;20.330&quot;</span><span class="p">,</span> <span class="s2">&quot;35.255&quot;</span><span class="p">,</span> <span class="s2">&quot;22.158&quot;</span><span class="p">,</span> <span class="s2">&quot;25.139&quot;</span><span class="p">,</span> <span class="s2">&quot;20.429&quot;</span><span class="p">,</span> <span class="s2">&quot;17.425&quot;</span><span class="p">,</span> <span class="s2">&quot;34.288&quot;</span><span class="p">,</span> <span class="s2">&quot;23.894&quot;</span><span class="p">,</span> <span class="s2">&quot;17.960&quot;</span><span class="p">,</span> <span class="s2">&quot;22.058&quot;</span><span class="p">,</span> <span class="s2">&quot;21.157&quot;</span><span class="p">],</span> 
+  <span class="s2">&quot;autobinx&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> 
+  <span class="s2">&quot;autobiny&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Incongruent&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> 
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;histogram&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="s2">&quot;bab000&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;xbins&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> 
+    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">15</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">([</span><span class="n">congruent</span><span class="p">,</span> <span class="n">incongruent</span><span class="p">])</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;autosize&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
+  <span class="s2">&quot;barmode&quot;</span><span class="p">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;hovermode&quot;</span><span class="p">:</span> <span class="s2">&quot;closest&quot;</span><span class="p">,</span> 
+  <span class="s2">&quot;showlegend&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
+  <span class="s2">&quot;xaxis&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;autorange&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
+    <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">37</span><span class="p">],</span> 
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;linear&quot;</span>
+  <span class="p">},</span> 
+  <span class="s2">&quot;yaxis&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;autorange&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> 
+    <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.31578947368</span><span class="p">],</span> 
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Congruent&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
+<span class="c1">#打开到plotly页面的代码：plot_url = py.plot(fig)</span>
+<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;不同条件下花费的时间&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~hjh399/33.embed" height="525px" width="100%"></iframe>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
